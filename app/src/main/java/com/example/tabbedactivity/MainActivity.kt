@@ -42,12 +42,17 @@ class MainActivity : AppCompatActivity() {
 
             // Callback function, fired on regular interval
             override fun onTick(millisUntilFinished: Long) {
-                textView.text = "seconds remaining: " + millisUntilFinished / 1000
+                textView.text = buildString {
+                    append(buildString {
+                        append("seconds remaining: ")
+                    })
+                    append((millisUntilFinished / 1000))
+                }
             }
 
             // Callback function, fired when the time is up
             override fun onFinish() {
-                textView.text = "done!"
+                "done!".also { textView.text = it }
             }
         }.start()
     }
